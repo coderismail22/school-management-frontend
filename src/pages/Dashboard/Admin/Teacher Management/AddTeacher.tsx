@@ -46,9 +46,12 @@ const AddTeacher = () => {
 
   const onSubmit = (data: {
     teacherName: string;
+    teacherId: string;
     profileImg: string;
     email: string;
+    password: string;
     phone: string;
+    bloodGroup: string;
     salary: number;
     address: string;
   }) => {
@@ -57,7 +60,8 @@ const AddTeacher = () => {
       profileImg,
     };
 
-    mutation.mutate(finalData);
+    // mutation.mutate(finalData);
+    console.log(finalData);
   };
 
   return (
@@ -67,7 +71,16 @@ const AddTeacher = () => {
       </h1>
       <AppForm
         onSubmit={onSubmit}
-        defaultValues={{ teacherName: "", salary: 0, address: "" }}
+        defaultValues={{
+          teacherName: "",
+          teacherId: "",
+          email: "",
+          password: "",
+          address: "",
+          salary: 0,
+          phone: "",
+          bloodGroup: "",
+        }}
         buttonText="Add Teacher"
       >
         {/* Teacher Name */}
