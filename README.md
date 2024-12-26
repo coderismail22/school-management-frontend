@@ -1,1 +1,1 @@
-# This is the frontend of school management frontend.
+# This is the frontend of school management.
