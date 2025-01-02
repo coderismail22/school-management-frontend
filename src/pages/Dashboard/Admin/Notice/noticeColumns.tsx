@@ -9,37 +9,40 @@ import { Button } from "@/components/ui/button";
 import { BiDotsVertical } from "react-icons/bi";
 import { FaRegEdit, FaTrash } from "react-icons/fa";
 
-export type TTeacher = {
+export type TNotice = {
   _id: string;
-  teacherName: string;
-  email: string;
-  salary: number;
-  phone: string;
-  profileImg: string;
+  title: string;
+  publishDate: string;
+  category: string;
+  noticePdfUrl: string;
 };
 
-export const teacherColumns = (
+export const noticeColumns = (
   handleEdit: (id: string) => void,
   handleDelete: (id: string) => void
-): ColumnDef<TTeacher>[] => [
+): ColumnDef<TNotice>[] => [
   {
     accessorKey: "sl",
     header: "SL",
     cell: ({ row }) => row.index + 1,
   },
   {
-    accessorKey: "teacherName",
-    header: "Name",
+    accessorKey: "title",
+    header: "Title",
   },
   {
-    accessorKey: "salary",
-    header: "Salary",
+    accessorKey: "category",
+    header: "Category",
+  },
+  {
+    accessorKey: "publishDate",
+    header: "Date",
   },
   {
     id: "actions",
     header: "Actions",
     cell: ({ row }) => {
-      const teacher = row.original;
+      const notice = row.original;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -48,11 +51,11 @@ export const teacherColumns = (
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <DropdownMenuItem onClick={() => handleEdit(teacher._id)}>
+            <DropdownMenuItem onClick={() => handleEdit(notice._id)}>
               <FaRegEdit className="text-green-700" />
               <p className="text-[12px]">Edit</p>
             </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => handleDelete(teacher._id)}>
+            <DropdownMenuItem onClick={() => handleDelete(notice._id)}>
               <FaTrash className="text-red-500" />
               <p className="text-[12px]">Delete</p>
             </DropdownMenuItem>

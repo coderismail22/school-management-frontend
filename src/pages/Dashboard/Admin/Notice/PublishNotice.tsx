@@ -3,7 +3,7 @@ import AppInput from "@/components/CustomForm/AppInput";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axiosInstance from "@/api/axiosInstance";
 import Swal from "sweetalert2";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import AppSelect from "@/components/CustomForm/AppSelect";
 import AppDatePicker from "@/components/CustomForm/AppDatePicker";
 
@@ -23,7 +23,7 @@ const publishNotice = async (teacherData: {
 
 const PublishNotice = () => {
   const queryClient = useQueryClient();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   // Mutation for creating a teacher
   const mutation = useMutation({
@@ -31,7 +31,7 @@ const PublishNotice = () => {
     onSuccess: () => {
       Swal.fire("Success!", "Notice published successfully!", "success");
       queryClient.invalidateQueries({ queryKey: ["notice"] });
-      // navigate("/dashboard/admin/notice"); // Redirect to notice list
+      navigate("/dashboard/admin/notice");
     },
     onError: (err) => {
       console.error(err);

@@ -4,109 +4,151 @@ import AppForm from "@/components/CustomForm/AppForm";
 import AppInput from "@/components/CustomForm/AppInput";
 import Swal from "sweetalert2";
 import axiosInstance from "@/api/axiosInstance";
-import ImageUpload from "@/components/ImageUpload/ImageUpload";
-import { useState } from "react";
 import Loader from "@/components/Loader/Loader";
+import AppDatePicker from "@/components/CustomForm/AppDatePicker";
+import AppSelect from "@/components/CustomForm/AppSelect";
 
-// Fetch teacher by ID
-const fetchTeacherById = async (teacherId: string) => {
-  const response = await axiosInstance.get(`/teachers/${teacherId}`);
+// Fetch notice by ID
+const fetchNoticeById = async (noticeId: string) => {
+  const response = await axiosInstance.get(`/notice/${noticeId}`);
+  console.log("notice", response?.data);
   return response?.data;
 };
 
-// Update teacher function
-const updateTeacher = async (
-  teacherId: string,
-  data: { name: string; salary: number }
+// Update notice function
+const updateNotice = async (
+  noticeId: string,
+  data: {
+    title: string;
+    publishDate: string;
+    category: string;
+    noticePdfUrl: string;
+  }
 ) => {
   const response = await axiosInstance.patch(
-    `/teachers/update-teacher/${teacherId}`,
+    `/notice/update-notice/${noticeId}`,
     data
   );
   return response?.data;
 };
 
-const EditTeacher = () => {
-  const [profileImg, setProfileImg] = useState<string>("");
-
-  const { teacherId } = useParams<{ teacherId: string }>();
+const EditNotice = () => {
+  const { noticeId } = useParams<{ noticeId: string }>();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  // Fetch teacher details
+  // Fetch notice details
   const {
-    data: teacher,
-    isLoading: isLoadingTeacher,
-    error: teacherError,
+    data: notice,
+    isLoading: isLoadingNotice,
+    error: noticeError,
   } = useQuery({
-    queryKey: ["teacher", teacherId],
-    queryFn: () => fetchTeacherById(teacherId!),
-    enabled: !!teacherId,
+    queryKey: ["notice", noticeId],
+    queryFn: () => fetchNoticeById(noticeId!),
+    enabled: !!noticeId,
   });
 
   const mutation = useMutation({
-    mutationFn: (data: { name: string; salary: number }) =>
-      updateTeacher(teacherId!, data),
+    mutationFn: (data: {
+      title: string;
+      publishDate: string;
+      category: string;
+      noticePdfUrl: string;
+    }) => updateNotice(noticeId!, data),
     onSuccess: () => {
-      Swal.fire("Updated!", "Teacher updated successfully!", "success");
-      queryClient.invalidateQueries({ queryKey: ["teachers"] });
-      navigate("/dashboard/admin/teacher-management/all-teachers");
+      Swal.fire("Updated!", "Notice updated successfully!", "success");
+      queryClient.invalidateQueries({ queryKey: ["notices"] });
+      navigate("/dashboard/admin/notice");
     },
     onError: (error) => {
       console.log(error);
-      Swal.fire("Error!", "Failed to update teacher.", "error");
+      Swal.fire("Error!", "Failed to update notice.", "error");
     },
   });
 
-  const onSubmit = (data: { name: string; salary: number }) => {
+  const onSubmit = (data: {
+    title: string;
+    publishDate: string;
+    category: string;
+    noticePdfUrl: string;
+  }) => {
     const finalData = {
       ...data,
-      profileImg: profileImg || teacher?.data?.profileImg,
     };
-    console.log(finalData);
     mutation.mutate(finalData);
   };
 
-  if (isLoadingTeacher) {
-    <Loader />;
+  if (isLoadingNotice) {
+    return <Loader />;
   }
-  if (teacherError) return <p>Something went wrong...</p>;
+  if (noticeError) return <p>Something went wrong...</p>;
 
   return (
     <div className="max-w-4xl mx-auto p-6">
-      <h1 className="text-2xl font-bold mb-6">Edit Teacher</h1>
-      <AppForm
-        onSubmit={onSubmit}
-        defaultValues={{
-          ...teacher?.data,
-        }}
-        buttonText="Update Teacher"
-      >
-        {/* Name */}
-        <AppInput
-          name="teacherName"
-          label="Teacher Name"
-          placeholder="Enter teacher name"
-        />
-        {/* ProfileImg */}
-        {/* Upload Cover Image */}
-        <div>
-          <label className="block font-medium text-gray-700">
-            Upload Cover Image
-          </label>
-          <ImageUpload setUploadedImageUrl={setProfileImg} />
-        </div>
+      <h1 className="text-2xl font-bold mb-6 text-center underline underline-offset-8 text-blue-500">
+        Edit Notice
+      </h1>
+      {notice && (
+        <AppForm
+          onSubmit={onSubmit}
+          defaultValues={{
+            ...notice?.data,
+          }}
+          buttonText="Update Notice"
+        >
+          {/* Title */}
+          <div className="mb-2">
+            <AppInput
+              name="title"
+              label="Title"
+              placeholder="Enter notice title"
+            />
+          </div>
 
-        {/* Email */}
-        <AppInput name="email" label="Email" placeholder="Enter email" />
-        {/* Phone */}
-        <AppInput name="phone" label="Phone" placeholder="Enter phone number" />
+          {/* Notice Category */}
+          <AppSelect
+            name="category"
+            label="Category"
+            placeholder="Select notice category"
+            options={[
+              {
+                value: "General",
+                label: "General",
+              },
+              {
+                value: "Event",
+                label: "Update",
+              },
+              {
+                value: "Exam",
+                label: "Exam",
+              },
+              {
+                value: "Other",
+                label: "Other",
+              },
+            ]}
+          />
 
-        {/* Salary */}
-        <AppInput name="salary" label="Salary" placeholder="Enter salary" />
-      </AppForm>
+          {/* PDF URL */}
+          <div className="my-2">
+            <AppInput
+              name="noticePdfUrl"
+              label="Notice File URL"
+              placeholder="Enter notice file URL"
+            />
+          </div>
+
+          {/* Publish Date */}
+          <AppDatePicker
+            name="publishDate"
+            label="Notice Date"
+            placeholder="Enter notice date"
+          />
+        </AppForm>
+      )}
     </div>
   );
 };
 
-export default EditTeacher;
+export default EditNotice;

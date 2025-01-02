@@ -14,15 +14,15 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-interface TeacherTableProps<TData, TValue> {
+interface NoticeTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
 }
 
-const TeacherTable = <TData, TValue>({
+const NoticeTable = <TData, TValue>({
   columns,
   data,
-}: TeacherTableProps<TData, TValue>) => {
+}: NoticeTableProps<TData, TValue>) => {
   const table = useReactTable({
     data,
     columns,
@@ -72,4 +72,4 @@ const TeacherTable = <TData, TValue>({
   );
 };
 
-export default TeacherTable;
+export default NoticeTable;

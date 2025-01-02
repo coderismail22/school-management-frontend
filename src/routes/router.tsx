@@ -47,6 +47,8 @@ import CourseDetailsPage from "@/CourseDetailsPage/CourseDetailsPage";
 import Contact from "@/pages/Contact/Contact/Contact";
 import About from "@/pages/About/About";
 import PublishNotice from "@/pages/Dashboard/Admin/Notice/PublishNotice";
+import AllNotice from "@/pages/Dashboard/Admin/Notice/AllNotice";
+import EditNotice from "@/pages/Dashboard/Admin/Notice/EditNotice";
 
 export const router = createBrowserRouter([
   {
@@ -96,9 +98,12 @@ export const router = createBrowserRouter([
     children: [
       // Role: Admin
       { path: "/dashboard/admin/home", element: <AdminHome /> },
-      { path: "/dashboard/admin/notice", element: <AdminHome /> },
+      { path: "/dashboard/admin/notice", element: <AllNotice /> },
       { path: "/dashboard/admin/publish-notice", element: <PublishNotice /> },
-      { path: "/dashboard/admin/publish-notice", element: <AdminHome /> },
+      {
+        path: "/dashboard/admin/edit-notice/:noticeId",
+        element: <EditNotice />,
+      },
       { path: "/dashboard/admin/orders", element: <AllOrders /> },
       { path: "/dashboard/admin/payments", element: <AllPayments /> },
       { path: "/dashboard/admin/categories", element: <Categories /> },
