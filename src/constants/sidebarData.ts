@@ -16,6 +16,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 
 import {
   MdDownloading,
+  MdEventNote,
   MdOutlineDownloading,
   MdOutlinePlayLesson,
 } from "react-icons/md";
@@ -141,12 +142,11 @@ export const sidebarData = {
   ],
   admin: [
     // { label: "Home", path: "/dashboard/admin/home", icon: FaHome },
-    // TODO: Add Route/Outline like PH
-    // {
-    //   label: "Add Route/Outline",
-    //   path: "/dashboard/admin/home",
-    //   icon: MdDocumentScanner,
-    // },
+    {
+      label: "Publish Notice",
+      path: "/dashboard/admin/notice",
+      icon: MdEventNote,
+    },
     {
       icon: FaChalkboardTeacher,
       label: "Teacher Management",
@@ -201,7 +201,6 @@ export const sidebarData = {
             },
           ],
         },
-
       ],
     },
   ],

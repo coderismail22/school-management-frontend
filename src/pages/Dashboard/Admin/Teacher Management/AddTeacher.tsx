@@ -45,7 +45,7 @@ const AddTeacher = () => {
   });
 
   const onSubmit = (data: {
-    teacherName: string;
+    name: string;
     teacherId: string;
     profileImg: string;
     email: string;
@@ -72,7 +72,7 @@ const AddTeacher = () => {
       <AppForm
         onSubmit={onSubmit}
         defaultValues={{
-          teacherName: "",
+          name: "",
           teacherId: "",
           email: "",
           password: "",
@@ -85,7 +85,7 @@ const AddTeacher = () => {
       >
         {/* Teacher Name */}
         <AppInput
-          name="teacherName"
+          name="name"
           label="Teacher Name"
           placeholder="Enter teacher name"
         />
