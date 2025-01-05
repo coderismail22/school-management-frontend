@@ -35,7 +35,7 @@ const updateTeacher = async (
   }
 ) => {
   const response = await axiosInstance.patch(
-    `/teachers/update-teacher/${teacherId}`,
+    `/users/update-teacher/${teacherId}`,
     data
   );
   return response.data;
