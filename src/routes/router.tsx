@@ -49,6 +49,8 @@ import About from "@/pages/About/About";
 import PublishNotice from "@/pages/Dashboard/Admin/Notice/PublishNotice";
 import AllNotice from "@/pages/Dashboard/Admin/Notice/AllNotice";
 import EditNotice from "@/pages/Dashboard/Admin/Notice/EditNotice";
+import RegisterStudent from "@/pages/Dashboard/Admin/Student Management/RegisterStudent";
+import StudentDropdownPage from "@/pages/Dashboard/Admin/Student Management/StudentDropdownPage";
 
 export const router = createBrowserRouter([
   {
@@ -98,22 +100,13 @@ export const router = createBrowserRouter([
     children: [
       // Role: Admin
       { path: "/dashboard/admin/home", element: <AdminHome /> },
+      // Notice
       { path: "/dashboard/admin/notice", element: <AllNotice /> },
       { path: "/dashboard/admin/publish-notice", element: <PublishNotice /> },
       {
         path: "/dashboard/admin/edit-notice/:noticeId",
         element: <EditNotice />,
       },
-      { path: "/dashboard/admin/orders", element: <AllOrders /> },
-      { path: "/dashboard/admin/payments", element: <AllPayments /> },
-      { path: "/dashboard/admin/categories", element: <Categories /> },
-      { path: "/dashboard/admin/batch", element: <Batch /> },
-      { path: "/dashboard/admin/batch/edit/:batchId", element: <EditBatch /> },
-      {
-        path: "/dashboard/admin/batch/all-batch-students/:batchId",
-        element: <AllBatchStudents />,
-      },
-      { path: "/dashboard/admin/batch/add-batch", element: <AddBatch /> },
       // Teacher Management
       {
         path: "/dashboard/admin/teacher-management/create-teacher",
@@ -127,58 +120,14 @@ export const router = createBrowserRouter([
         path: "/dashboard/admin/teacher-management/all-teachers",
         element: <AllTeachers />,
       },
-      // Course Management
-      // Course
+      // Student Management
       {
-        path: "/dashboard/admin/course-management/create-course",
-        element: <CreateCourse />,
+        path: "/dashboard/admin/student-management/register-student",
+        element: <RegisterStudent />,
       },
       {
-        path: "/dashboard/admin/course-management/all-courses",
-        element: <AllCourses />,
-      },
-      {
-        path: "/dashboard/admin/courses/edit/:courseId",
-        element: <EditCourse />,
-      },
-      // Subject
-      {
-        path: "/dashboard/admin/subject-management/create-subject",
-        element: <CreateSubject />,
-      },
-      {
-        path: "/dashboard/admin/subject-management/all-subjects",
-        element: <AllSubjects />,
-      },
-      {
-        path: "/dashboard/admin/subjects/edit/:subjectId",
-        element: <EditSubject />,
-      },
-      // Topic
-      {
-        path: "/dashboard/admin/topic-management/create-topic",
-        element: <CreateTopic />,
-      },
-      {
-        path: "/dashboard/admin/topics/edit/:topicId",
-        element: <EditTopic />,
-      },
-      {
-        path: "/dashboard/admin/topic-management/all-topics",
-        element: <AllTopics />,
-      },
-      // Lesson
-      {
-        path: "/dashboard/admin/lesson-management/create-lesson",
-        element: <CreateLesson />,
-      },
-      {
-        path: "/dashboard/admin/lesson-management/lessons/edit/:lessonId",
-        element: <EditLesson />,
-      },
-      {
-        path: "/dashboard/admin/lesson-management/all-lessons",
-        element: <AllLessons />,
+        path: "/dashboard/admin/student-management/student-dropdown-page",
+        element: <StudentDropdownPage />, 
       },
       // Role: Instructor
       { path: "/dashboard/instructor/home", element: <InstructorHome /> },

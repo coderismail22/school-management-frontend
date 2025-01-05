@@ -22,6 +22,7 @@ import {
 } from "react-icons/md";
 import { BiCategory } from "react-icons/bi";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { PiStudentFill } from "react-icons/pi";
 
 export const sidebarData = {
   superAdmin: [
@@ -160,6 +161,22 @@ export const sidebarData = {
           icon: FaRegListAlt,
           label: "All Teachers",
           path: "/dashboard/admin/teacher-management/all-teachers",
+        },
+      ],
+    },
+    {
+      icon: PiStudentFill,
+      label: "Student Management",
+      children: [
+        {
+          icon: IoMdAddCircleOutline,
+          label: "Register Student",
+          path: "/dashboard/admin/student-management/register-student",
+        },
+        {
+          icon: FaRegListAlt,
+          label: "Students",
+          path: "/dashboard/admin/student-management/student-dropdown-page",
         },
       ],
     },
