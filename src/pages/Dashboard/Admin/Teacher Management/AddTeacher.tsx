@@ -8,17 +8,24 @@ import ImageUpload from "@/components/ImageUpload/ImageUpload";
 import { useState } from "react";
 import AppSelect from "@/components/CustomForm/AppSelect";
 import AppInputPassword from "@/components/CustomForm/AppInputPassword";
+import { AxiosError } from "axios";
+import { BackendErrorResponse } from "@/types/backendErrorResponse.type";
+import { handleAxiosError } from "@/utils/handleAxiosError";
 
 // Create teacher function
 const createTeacher = async (teacherData: {
-  teacherName: string;
+  name: string;
+  teacherId: string;
   profileImg: string;
   email: string;
+  password: string;
   phone: string;
+  bloodGroup: string;
   salary: number;
+  address: string;
 }) => {
   const response = await axiosInstance.post(
-    "/teachers/create-teacher",
+    "/users/create-teacher",
     teacherData
   );
   return response.data;
@@ -38,9 +45,10 @@ const AddTeacher = () => {
       queryClient.invalidateQueries({ queryKey: ["teachers"] });
       navigate("/dashboard/admin/teacher-management/all-teachers");
     },
-    onError: (err) => {
-      console.error(err);
-      Swal.fire("Error!", "Failed to add teacher. Please try again.", "error");
+    onError: (err: AxiosError<BackendErrorResponse>) => {
+      console.log(err);
+      handleAxiosError(err, "Failed to add teacher");
+      // Swal.fire("Error!", "Failed to add teacher. Please try again.", "error");
     },
   });
 
@@ -60,8 +68,8 @@ const AddTeacher = () => {
       profileImg,
     };
 
-    // mutation.mutate(finalData);
-    console.log(finalData);
+    mutation.mutate(finalData);
+    // console.log(finalData);
   };
 
   return (

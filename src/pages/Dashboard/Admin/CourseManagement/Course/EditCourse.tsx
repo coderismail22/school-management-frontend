@@ -20,7 +20,7 @@ type FetchCourseResponse = {
 };
 
 // Fetch course details by ID
-const fetchCourseById = async (
+const fetchCourseById = async ( 
   courseId: string
 ): Promise<FetchCourseResponse> => {
   const response = await axiosInstance.get(

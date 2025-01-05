@@ -28,8 +28,12 @@ export const teacherColumns = (
     cell: ({ row }) => row.index + 1,
   },
   {
-    accessorKey: "teacherName",
+    accessorKey: "name",
     header: "Name",
+  },
+  {
+    accessorKey: "email",
+    header: "Email",
   },
   {
     accessorKey: "salary",
