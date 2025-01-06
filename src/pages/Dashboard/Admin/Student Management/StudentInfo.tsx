@@ -1,7 +1,7 @@
 import axiosInstance from "@/api/axiosInstance";
 import { useEffect, useState } from "react";
 
-const StudentDropdownPage = () => {
+const StudentInfo = () => {
   const [years, setYears] = useState<string[]>([]);
   const [versions, setVersions] = useState<string[]>([]);
   const [classes, setClasses] = useState<string[]>([]);
@@ -126,4 +126,4 @@ const StudentDropdownPage = () => {
   );
 };
 
-export default StudentDropdownPage;
+export default StudentInfo;

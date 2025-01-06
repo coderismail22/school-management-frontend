@@ -16,6 +16,7 @@ import { IoMdAddCircleOutline } from "react-icons/io";
 
 import {
   MdDownloading,
+  MdEmojiEvents,
   MdEventNote,
   MdOutlineDownloading,
   MdOutlinePlayLesson,
@@ -149,6 +150,11 @@ export const sidebarData = {
       icon: MdEventNote,
     },
     {
+      label: "Publish Event",
+      path: "/dashboard/admin/event",
+      icon: MdEmojiEvents,
+    },
+    {
       icon: FaChalkboardTeacher,
       label: "Teacher Management",
       children: [
@@ -176,74 +182,13 @@ export const sidebarData = {
         {
           icon: FaRegListAlt,
           label: "Students",
-          path: "/dashboard/admin/student-management/student-dropdown-page",
-        },
-      ],
-    },
-    {
-      label: "Course Management",
-      icon: FaBook,
-      children: [
-        {
-          icon: CiBoxList,
-          label: "Subject",
-          path: "/dashboard/admin/course-management/create-course",
-          children: [
-            {
-              icon: IoMdAddCircleOutline,
-              label: "Create Subject",
-              path: "/dashboard/admin/course-management/create-course",
-            },
-            {
-              icon: FaRegListAlt,
-              label: "All Subjects",
-              path: "/dashboard/admin/course-management/all-courses",
-            },
-          ],
-        },
-        {
-          icon: CiBoxList,
-          label: "Class",
-          path: "/dashboard/admin/course-management/create-course",
-          children: [
-            {
-              icon: IoMdAddCircleOutline,
-              label: "Create Class",
-              path: "/dashboard/admin/course-management/create-course",
-            },
-            {
-              icon: FaRegListAlt,
-              label: "All Classes",
-              path: "/dashboard/admin/course-management/all-courses",
-            },
-          ],
+          path: "/dashboard/admin/student-management/student-info-page",
         },
       ],
     },
   ],
   instructor: [
     { label: "Home", path: "/dashboard/instructor/home", icon: FaHome },
-    {
-      label: "Course Management",
-      icon: FaChalkboardTeacher,
-      children: [
-        {
-          icon: GiProgression,
-          label: "Running Courses",
-          path: "/dashboard/instructor/course-management/running",
-        },
-        {
-          icon: MdOutlineDownloading,
-          label: "Upcoming Courses",
-          path: "/dashboard/instructor/course-management/upcoming",
-        },
-        {
-          icon: IoCheckmarkDoneSharp,
-          label: "Completed Courses",
-          path: "/dashboard/instructor/course-management/completed",
-        },
-      ],
-    },
   ],
   student: [
     { label: "Home", path: "/dashboard/student/home", icon: FaHome },

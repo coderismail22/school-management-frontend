@@ -23,7 +23,10 @@ import PublishNotice from "@/pages/Dashboard/Admin/Notice/PublishNotice";
 import AllNotice from "@/pages/Dashboard/Admin/Notice/AllNotice";
 import EditNotice from "@/pages/Dashboard/Admin/Notice/EditNotice";
 import RegisterStudent from "@/pages/Dashboard/Admin/Student Management/RegisterStudent";
-import StudentDropdownPage from "@/pages/Dashboard/Admin/Student Management/StudentDropdownPage";
+import StudentInfo from "@/pages/Dashboard/Admin/Student Management/StudentInfo";
+import PublishEvent from "@/pages/Dashboard/Admin/Event/PublishEvent";
+import AllEvent from "@/pages/Dashboard/Admin/Event/AllEvent";
+import EditEvent from "@/pages/Dashboard/Admin/Event/EditEvent";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +83,13 @@ export const router = createBrowserRouter([
         path: "/dashboard/admin/edit-notice/:noticeId",
         element: <EditNotice />,
       },
+      // Event
+      { path: "/dashboard/admin/event", element: <AllEvent /> },
+      { path: "/dashboard/admin/publish-event", element: <PublishEvent /> },
+      {
+        path: "/dashboard/admin/edit-event/:eventId",
+        element: <EditEvent />,
+      },
       // Teacher Management
       {
         path: "/dashboard/admin/teacher-management/create-teacher",
@@ -99,8 +109,8 @@ export const router = createBrowserRouter([
         element: <RegisterStudent />,
       },
       {
-        path: "/dashboard/admin/student-management/student-dropdown-page",
-        element: <StudentDropdownPage />,
+        path: "/dashboard/admin/student-management/student-info-page",
+        element: <StudentInfo />,
       },
       // Role: Teacher
 
