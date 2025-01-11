@@ -54,12 +54,6 @@ const EditEvent = () => {
     queryKey: ["event", eventId],
     queryFn: () => fetchEventById(eventId!),
     enabled: !!eventId,
-    onSuccess: (data) => {
-      setFormData({
-        category: data?.data?.category || "",
-        type: data?.data?.type || "",
-      });
-    },
   });
 
   const mutation = useMutation({
@@ -93,7 +87,7 @@ const EditEvent = () => {
     const finalData = {
       ...data,
       category: formData.category,
-      type: formData.type,
+      type: formData.type as "ended" | "upcoming",
     };
     mutation.mutate(finalData);
   };
@@ -153,7 +147,9 @@ const EditEvent = () => {
 
           {/* Category */}
           <div className="mb-4">
-            <label className="block font-medium text-black mb-2">Category</label>
+            <label className="block font-medium text-black mb-2">
+              Category
+            </label>
             <Select
               options={categoryOptions}
               placeholder="Select event category"
@@ -199,7 +195,9 @@ const EditEvent = () => {
             <Select
               options={typeOptions}
               placeholder="Select event type"
-              value={typeOptions.find((option) => option.value === formData.type)}
+              value={typeOptions.find(
+                (option) => option.value === formData.type
+              )}
               onChange={(selectedOption) =>
                 setFormData((prev) => ({
                   ...prev,
